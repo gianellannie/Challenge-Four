@@ -23,9 +23,35 @@ public class Topico {
     private String titulo;
     private String mensaje;
     private LocalDateTime fechaCreacion;
-    private boolean estado;
+    private Boolean estado;
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
     @ManyToOne(fetch = FetchType.LAZY)
     private Curso curso;
+
+    public Topico(
+            String titulo,
+            String mensaje,
+            LocalDateTime fechaCreacion,
+            Usuario usuario,
+            Curso curso
+    ) {
+        this.titulo = titulo;
+        this.mensaje = mensaje;
+        this.fechaCreacion = fechaCreacion;
+        this.estado = true;
+        this.usuario = usuario;
+        this.curso = curso;
+    }
+
+    public void actualizar(
+            DatosActualizarTopico datos,
+            Curso curso,
+            LocalDateTime fechaActualizacion
+    ) {
+        this.titulo = datos.titulo();
+        this.mensaje = datos.mensaje();
+        this.fechaCreacion = fechaActualizacion;
+        this.curso = curso;
+    }
 }
