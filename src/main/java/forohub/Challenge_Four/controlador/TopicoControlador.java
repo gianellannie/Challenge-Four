@@ -41,12 +41,12 @@ public class TopicoControlador {
             @PageableDefault(size = 10)
             Pageable paginacion,
             @RequestParam(required = false)
-            String nombreCurso,
+            String name,
             @RequestParam(required = false)
-            Integer anoEspecifico
+            Integer year
     ){
         Page<DatosRespuestaTopico> topicos = topicoServicio
-                .mostrarTopicos(paginacion,nombreCurso,anoEspecifico);
+                .mostrarTopicos(paginacion,name,year);
         return ResponseEntity.ok(topicos);
     }
 

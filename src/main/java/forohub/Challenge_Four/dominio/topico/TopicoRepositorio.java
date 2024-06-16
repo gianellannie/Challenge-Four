@@ -13,10 +13,10 @@ public interface TopicoRepositorio extends JpaRepository<Topico,Long> {
             SELECT t FROM Topico t
             WHERE t.curso.id = :idCurso
             AND
-            YEAR(t.fechaCreacion) = :anoEspecifico
+            YEAR(t.fechaCreacion) = :year
             ORDER BY t.fechaCreacion ASC
             """)
-    Page<Topico> criterioBusqueda(Pageable paginacion, Long idCurso, Integer anoEspecifico);
+    Page<Topico> criterioBusqueda(Pageable paginacion, Long idCurso, Integer year);
     @Query("""
             SELECT t FROM Topico t
             ORDER BY t.fechaCreacion ASC

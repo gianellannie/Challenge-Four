@@ -49,13 +49,13 @@ public class TopicoServicio {
 
     public Page<DatosRespuestaTopico> mostrarTopicos(
             Pageable paginacion,
-            String nombreCurso,
-            Integer anoEspecifico
+            String name,
+            Integer year
     ){
-        if(nombreCurso!=null && anoEspecifico!=null){
-            validadorDeIntegridad.validarNombreCurso(nombreCurso);
-            Long idCurso = cursoRepositorio.findByNombreIgnoreCase(nombreCurso).get().getId();
-            return topicoRepositorio.criterioBusqueda(paginacion,idCurso,anoEspecifico)
+        if(name!=null && year!=null){
+            validadorDeIntegridad.validarNombreCurso(name);
+            Long idCurso = cursoRepositorio.findByNombreIgnoreCase(name).get().getId();
+            return topicoRepositorio.criterioBusqueda(paginacion,idCurso,year)
                     .map(DatosRespuestaTopico::new);
         }
         return topicoRepositorio.mostrar(paginacion)

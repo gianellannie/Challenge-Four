@@ -21,8 +21,8 @@ public class ValidadorDeIntegridad {
             throw new ValidacionIntegridad("El id del usuario no fue encontrado.");
         }
     }
-    public void validarNombreCurso(String nombreCurso){
-        if (cursoRepositorio.findByNombreIgnoreCase(nombreCurso).isEmpty()){
+    public void validarNombreCurso(String name){
+        if (cursoRepositorio.findByNombreIgnoreCase(name).isEmpty()){
             throw new ValidacionIntegridad("El nombre del curso no fue encontrado.");
         }
     }
