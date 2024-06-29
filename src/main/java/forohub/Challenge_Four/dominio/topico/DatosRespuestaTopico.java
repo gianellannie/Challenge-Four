@@ -1,6 +1,9 @@
 package forohub.Challenge_Four.dominio.topico;
 
+import forohub.Challenge_Four.dominio.respuesta.DatosRespuesta;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record DatosRespuestaTopico(
         Long id,
@@ -9,7 +12,8 @@ public record DatosRespuestaTopico(
         LocalDateTime fechaCreacion,
         Boolean estado,
         String nombreUsuario,
-        String nombreCurso
+        String nombreCurso,
+        List<DatosRespuesta> respuestas
 ) {
     public DatosRespuestaTopico(Topico topico) {
         this(
@@ -19,7 +23,10 @@ public record DatosRespuestaTopico(
                 topico.getFechaCreacion(),
                 topico.getEstado(),
                 topico.getUsuario().getNombre(),
-                topico.getCurso().getNombre()
+                topico.getCurso().getNombre(),
+                topico.getRespuestas().stream()
+                        .map(DatosRespuesta::new)
+                        .toList()
         );
     }
 }

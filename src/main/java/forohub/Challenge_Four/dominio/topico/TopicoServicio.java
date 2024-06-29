@@ -27,7 +27,7 @@ public class TopicoServicio {
     @Autowired
     private ValidadorDeIntegridad validadorDeIntegridad;
 
-    public DatosRespuestaTopico registrar(
+    public DatosRespuestaRegistrar registrar(
             DatosRegistrarTopico datos
     ){
         validadorDeIntegridad.validarIdUsuario(datos.idUsuario());
@@ -44,7 +44,7 @@ public class TopicoServicio {
                 curso
         );
         topicoRepositorio.save(topico);
-        return new DatosRespuestaTopico(topico);
+        return new DatosRespuestaRegistrar(topico);
     }
 
     public Page<DatosRespuestaTopico> mostrarTopicos(

@@ -17,19 +17,17 @@ import java.net.URI;
 @RequestMapping("/topicos")
 public class TopicoControlador {
     @Autowired
-    private TopicoRepositorio topicoRepositorio;
-    @Autowired
     private TopicoServicio topicoServicio;
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DatosRespuestaTopico> registrar(
+    public ResponseEntity<DatosRespuestaRegistrar> registrar(
             @RequestBody
             @Valid
             DatosRegistrarTopico datos,
             UriComponentsBuilder uriComponentsBuilder
     ){
-        DatosRespuestaTopico respuesta = topicoServicio.registrar(datos);
+        DatosRespuestaRegistrar respuesta = topicoServicio.registrar(datos);
         URI url = uriComponentsBuilder.path("/topicos/{id}")
                 .buildAndExpand(respuesta.id())
                 .toUri();
@@ -73,6 +71,7 @@ public class TopicoControlador {
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity eliminar(
             @PathVariable
             Long id

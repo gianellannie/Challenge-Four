@@ -1,6 +1,7 @@
 package forohub.Challenge_Four.dominio.topico;
 
 import forohub.Challenge_Four.dominio.curso.Curso;
+import forohub.Challenge_Four.dominio.respuesta.Respuesta;
 import forohub.Challenge_Four.dominio.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "topicos")
@@ -28,6 +30,8 @@ public class Topico {
     private Usuario usuario;
     @ManyToOne(fetch = FetchType.LAZY)
     private Curso curso;
+    @OneToMany(mappedBy = "topico",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Respuesta> respuestas;
 
     public Topico(
             String titulo,
